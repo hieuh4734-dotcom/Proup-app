@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "21209096276",
+    "project_id": "proup-app",
+    "storage_bucket": "proup-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:21209096276:android:9bd576d2839c32a5408dc1",
+        "android_client_info": {
+          "package_name": "com.example.proup"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzKmnbpO0mbtA23IOareqrnCySv-jZb70"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
+
