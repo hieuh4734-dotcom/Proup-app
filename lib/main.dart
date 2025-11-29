@@ -3,7 +3,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 // QUAN TRỌNG: Import DangNhap từ file dang_nhap.dart
-import 'package:proup/dang_nhap.dart'; 
+import 'package:proup/dang_nhap.dart';
+// Import Firebase options
+import 'firebase_options.dart';
+// Import Firebase options
 
 // ******* GLOBAL FIREBASE INSTANCES *******
 // Khai báo các biến toàn cục để các màn hình khác có thể sử dụng
@@ -17,12 +20,12 @@ void main() async {
 
   // KHỞI TẠO FIREBASE CORE
   try {
-    // Lưu ý: Bạn cần chạy 'flutterfire configure' để sinh ra firebase_options.dart
-    await Firebase.initializeApp(); 
-    print("Firebase đã khởi tạo thành công.");
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    ); 
+    print("Firebase đã khởi tạo thành công!");
   } catch (e) {
-    print("Lỗi Khởi tạo Firebase: $e");
-    // Trong ứng dụng thực tế, bạn nên thông báo lỗi này cho người dùng
+    print(" Lỗi Khởi tạo Firebase: $e");
   }
   
   runApp(const MyApp());
