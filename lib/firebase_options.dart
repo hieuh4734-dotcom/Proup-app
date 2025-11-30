@@ -48,28 +48,28 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDzKmnbpO0mbtA23IOareqrnCySv-jZb70',
-    appId: '1:21209096276:web:9bd576d2839c32a5408dc1',
+    apiKey: 'AIzaSyAnXnqN8y8JotN7E8iCuzKPh-GuoMXFQQU',
+    appId: '1:275867047380:web:865625229871b6fb69f241',
     messagingSenderId: '275867047380',
     projectId: 'proup-5095f',
-    authDomain: 'proup-app.firebaseapp.com',
+    authDomain: 'proup-5095f.firebaseapp.com',
     storageBucket: 'proup-5095f.firebasestorage.app',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyAnXnqN8y8JotN7E8iCuzKPh-GuoMXFQQU',
     appId: '1:275867047380:android:865625229871b6fb69f241',
-    messagingSenderId: '21209096276',
-    projectId: 'proup-app',
-    storageBucket: 'proup-app.firebasestorage.app',
+    messagingSenderId: '275867047380',
+    projectId: 'proup-5095f',
+    storageBucket: 'proup-5095f.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDzKmnbpO0mbtA23IOareqrnCySv-jZb70',
-    appId: '1:21209096276:ios:9bd576d2839c32a5408dc1',
-    messagingSenderId: '21209096276',
-    projectId: 'proup-app',
-    storageBucket: 'proup-app.firebasestorage.app',
+    apiKey: 'AIzaSyAnXnqN8y8JotN7E8iCuzKPh-GuoMXFQQU',
+    appId: '1:275867047380:ios:865625229871b6fb69f241',
+    messagingSenderId: '275867047380',
+    projectId: 'proup-5095f',
+    storageBucket: 'proup-5095f.firebasestorage.app',
     iosBundleId: 'com.example.proup',
   );
 }
