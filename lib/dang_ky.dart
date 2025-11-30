@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart'; 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:proup/trang_chu.dart'; 
+import 'package:proup/chon_vai_tro.dart'; 
 import 'package:proup/dang_nhap.dart'; 
 import 'package:proup/main.dart'; // Giả định chứa các biến global 'auth' và 'db'
 
@@ -80,12 +80,12 @@ class _DangKyState extends State<DangKy> {
           'score': 0, // Khởi tạo điểm
         });
         
-        _showSnackBar('Đăng ký thành công! Chuyển sang Trang Chủ.', isError: false);
+        _showSnackBar('Đăng ký thành công! Vui lòng chọn vai trò của bạn.', isError: false);
         
-        // Điều hướng đến Trang Chủ
+        // Điều hướng đến trang Chọn Vai Trò
         Navigator.pushReplacement(
           context, 
-          MaterialPageRoute(builder: (context) => const TrangChu()), // Dùng class TrangChu
+          MaterialPageRoute(builder: (context) => const ChonVaiTro()),
         );
       }
 

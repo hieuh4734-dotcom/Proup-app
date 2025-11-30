@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-// ignore: unused_import
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:proup/main.dart'; // Truy cập auth và db
-import 'package:proup/trang_chu.dart'; // Trang chủ sau khi đăng nhập
+import 'package:proup/chon_vai_tro.dart'; // Trang chọn vai trò
+import 'package:proup/trang_chu_hoc_sinh.dart'; // Trang chủ học sinh
+import 'package:proup/trang_chu_giao_vien.dart'; // Trang chủ giáo viên
 import 'package:proup/dang_ky.dart'; // Trang Đăng ký
 
 // Class DangNhap
@@ -44,18 +45,48 @@ class _DangNhapState extends State<DangNhap> {
 
     try {
       // 1. ĐĂNG NHẬP BẰNG EMAIL/PASSWORD
-      await auth.signInWithEmailAndPassword(
+      UserCredential userCredential = await auth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
       
-      _showSnackBar('Đăng nhập thành công! Chuyển sang Trang Chủ.', isError: false);
+      // 2. Kiểm tra vai trò của người dùng trong Firestore
+      const appId = String.fromEnvironment('__app_id', defaultValue: 'default-app-id');
+      final userDoc = await db.collection('artifacts/$appId/public/data/users')
+          .doc(userCredential.user!.uid)
+          .get();
       
-      // 2. Điều hướng đến Trang Chủ và xóa stack 
-      Navigator.pushReplacement(
-        context, 
-        MaterialPageRoute(builder: (context) => const TrangChu()), 
-      );
+      final userData = userDoc.data();
+      final userRole = userData?['role'] as String?;
+      
+      _showSnackBar('Đăng nhập thành công!', isError: false);
+      
+      // 3. Điều hướng dựa trên vai trò
+      if (userRole == null) {
+        // Chưa chọn vai trò -> chuyển đến trang chọn vai trò
+        Navigator.pushReplacement(
+          context, 
+          MaterialPageRoute(builder: (context) => const ChonVaiTro()), 
+        );
+      } else if (userRole == 'hoc_sinh') {
+        // Học sinh -> trang chủ học sinh
+        Navigator.pushReplacement(
+          context, 
+          MaterialPageRoute(builder: (context) => const TrangChuHocSinh()), 
+        );
+      } else if (userRole == 'giao_vien') {
+        // Giáo viên -> trang chủ giáo viên
+        Navigator.pushReplacement(
+          context, 
+          MaterialPageRoute(builder: (context) => const TrangChuGiaoVien()), 
+        );
+      } else {
+        // Vai trò không xác định -> chọn lại
+        Navigator.pushReplacement(
+          context, 
+          MaterialPageRoute(builder: (context) => const ChonVaiTro()), 
+        );
+      }
 
     } on FirebaseAuthException catch (e) {
       String errorMessage;
